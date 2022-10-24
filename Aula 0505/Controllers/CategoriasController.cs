@@ -6,7 +6,7 @@ using Modelo.Tabelas;
 using Servico.Tabelas;
 using System;
 
-namespace Aula_0505.Controllers
+namespace PSI2022.Controllers
 {
     public class CategoriasController : Controller
     {

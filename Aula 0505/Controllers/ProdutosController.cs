@@ -6,7 +6,7 @@ using Servico.Cadastros;
 using Servico.Tabelas;
 using Modelo.Cadastros;
 
-namespace Aula_0505.Controllers
+namespace PSI2022.Controllers
 {
     public class ProdutosController : Controller
     {

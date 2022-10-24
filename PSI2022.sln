@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32413.511
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula 0505", "Aula 0505\Aula 0505.csproj", "{5AB30B6B-9595-49B4-A89F-8199D7850B4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSI2022", "Aula 0505\PSI2022.csproj", "{5AB30B6B-9595-49B4-A89F-8199D7850B4C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelo", "Modelo\Modelo.csproj", "{7C5DDF2C-4B80-4F4C-85D2-447A2FB5D5AE}"
 EndProject

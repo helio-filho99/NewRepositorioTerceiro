@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using Modelo.Cadastros;
 using Servico.Cadastros;
 
-namespace Aula_0505.Controllers
+namespace PSI2022.Controllers
 {
     public class FabricantesController : Controller
     {
