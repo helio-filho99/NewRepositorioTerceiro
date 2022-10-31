@@ -1,5 +1,4 @@
 ﻿@model Modelo.Tabelas.Categoria
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Alterando os dados de uma CATEGORIA";
@@ -17,8 +16,8 @@
                 @Html.HiddenFor(model => model.CategoriaId)
                 <div class="form-group">
                     @Html.LabelFor(model => model.Nome, htmlAttributes:
-                    new { @class = "control-label col-md-1" })
-                    <div class="col-md-11">
+                    new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
                         @Html.EditorFor(model => model.Nome, new
                         {
                             htmlAttributes =
@@ -30,9 +29,13 @@
                 </div>
             </div>
             <div class="panel-footer panel-info">
-                <input type="submit" value="Gravar alterações" class="btn btn-info" />
-                @Html.ActionLink("Retornar para a listagem de CATEGORIAS", "Index", null,
-                new { @class = "btn btn-warning" })
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Gravar alterações" class="btn btn-info" />
+                    @Html.ActionLink("Retornar para a listagem de CATEGORIAS", "Index", null,
+                    new { @class = "btn btn-warning" })
+                </div>
+                <br />
+                <br />
             </div>
         </div>
     </div>

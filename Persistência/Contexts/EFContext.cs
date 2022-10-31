@@ -6,14 +6,15 @@ using System.Linq;
 using System.Web;
 using Modelo.Cadastros;
 using Modelo.Tabelas;
+using Persistência.Migrations;
 
 namespace Persistencia.Contexts
 {
     public class EFContext : DbContext
     {
         public EFContext() : base("Asp_Net_MVC_CS") {
-            Database.SetInitializer<EFContext>(
-                new DropCreateDatabaseIfModelChanges<EFContext>());
+            Database.SetInitializer<EFContext>(new
+            MigrateDatabaseToLatestVersion<EFContext, Configuration>());
         }
 
         public DbSet<Categoria> Categorias { get; set; }

@@ -1,5 +1,4 @@
-﻿@model Modelo.Cadastros.Fabricante
-
+﻿@model Modelo.Tabelas.Categoria
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Registrando uma NOVA CATEGORIA";
@@ -17,9 +16,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Nome, htmlAttributes: new
                     {
-                    @class = "control-label col-md-1"
+                    @class = "control-label col-md-2"
                     })
-                    <div class="col-md-11">
+                    <div class="col-md-10">
                         @Html.EditorFor(model => model.Nome, new
                         {
                             htmlAttributes =
@@ -32,9 +31,13 @@
             </div>
         </div>
         <div class="panel-footer panel-info">
-            <input type="submit" value="Adicionar Categoria" class="btn btn-danger" />
-            @Html.ActionLink("Retornar para a listagem de CATEGORIAS", "Index", null,
-            new { @class = "btn btn-warning" })
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Adicionar Categoria" class="btn btn-danger" />
+                @Html.ActionLink("Retornar para a listagem de CATEGORIAS", "Index", null,
+                new { @class = "btn btn-warning" })
+            </div>
+            <br />
+            <br />
         </div>
     </div>
 }
