@@ -10,7 +10,6 @@ namespace PSI2022.Controllers
 {
     public class ProdutosController : Controller
     {
-        //private EFContext context = new EFContext();
         private ProdutoServico produtoServico = new ProdutoServico();
         private CategoriaServico categoriaServico = new CategoriaServico();
         private FabricanteServico fabricanteServico = new FabricanteServico();
@@ -18,10 +17,6 @@ namespace PSI2022.Controllers
         // GET: Produtos
         public ActionResult Index()
         {
-            //var produtos =
-            //    context.Produtos.Include(c => c.Categoria).Include(f => f.Fabricante).
-            //    OrderBy(n => n.Nome);
-            //return View(produtos);
             return View(produtoServico.ObterProdutosClassificadosPorNome());
         }
 
@@ -96,7 +91,6 @@ namespace PSI2022.Controllers
             return View(produto);
         }
 
-        // Metodo Privado
         private void PopularViewBag(Produto produto = null)
         {
             if (produto == null)
@@ -115,7 +109,6 @@ namespace PSI2022.Controllers
             }
         }
 
-        // Metodo Privado
         private ActionResult GravarProduto(Produto produto)
         {
             try
