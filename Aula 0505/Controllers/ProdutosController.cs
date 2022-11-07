@@ -103,6 +103,7 @@ namespace aula.Controllers
         [HttpPost]
         public ActionResult Edit(Produto produto)
         {
+            PopularViewBag();
             return GravarProduto(produto);
         }
 
