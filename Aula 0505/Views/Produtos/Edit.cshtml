@@ -42,7 +42,7 @@
                                                value="Sim">Remover 
                                     </label>
                                 </div>
-                                @Html.ActionLink("Baixar o arquivo: " + Model.NomeArquivo, "DownloadArquivo", "Produto", new { id = Model.ProdutoId }, null)
+                                @Html.ActionLink("Baixar o arquivo: " + Model.NomeArquivo, "DownloadArquivo", "Produtos", new { area = "", id = Model.ProdutoId }, null)
                             </div>
                         }
 
