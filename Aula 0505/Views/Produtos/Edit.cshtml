@@ -39,11 +39,10 @@
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="chkRemoverImagem"
-                                               value="Sim">Remover imagem
-
+                                               value="Sim">Remover 
                                     </label>
                                 </div>
-                                @Html.ActionLink("Baixar o arquivo : " + Model.NomeArquivo, "DownloadArquivo", "Produto", new { area = "Cadastros", id = Model.ProdutoId }, null)
+                                @Html.ActionLink("Baixar o arquivo: " + Model.NomeArquivo, "DownloadArquivo", "Produto", new { id = Model.ProdutoId }, null)
                             </div>
                         }
 

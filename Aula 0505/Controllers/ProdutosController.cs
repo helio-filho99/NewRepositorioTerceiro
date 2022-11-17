@@ -67,7 +67,6 @@ namespace PSICAP2.Controllers
                         produto.TamanhoArquivo = logotipo.ContentLength;
                     }
                     produtoServico.GravarProduto(produto);
-                    produtoServico.GravarProduto(produto);
                     return RedirectToAction("Index");
                 }
                 PopularViewBag(produto);
@@ -105,8 +104,6 @@ namespace PSICAP2.Controllers
             fileStream.Close();
             return File(fileStream.Name, produto.LogotipoMimeType, produto.NomeArquivo);
         }
-
-
 
         private ProdutoServico produtoServico = new ProdutoServico();
         private CategoriaServico categoriaServico = new CategoriaServico();
