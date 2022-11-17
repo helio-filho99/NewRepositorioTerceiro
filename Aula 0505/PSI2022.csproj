@@ -167,6 +167,7 @@
     <Content Include="Content\DataTables-1.10.2\css\dataTables.responsive.scss" />
     <Content Include="Content\DataTables-1.10.2\css\dataTables.jqueryui.scss" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -257,6 +258,10 @@
     <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{7c5ddf2c-4b80-4f4c-85d2-447a2fb5d5ae}</Project>
       <Name>Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistência\Persistencia.csproj">
+      <Project>{9656e5c2-a4f5-402d-bb98-3e91884d513b}</Project>
+      <Name>Persistencia</Name>
     </ProjectReference>
     <ProjectReference Include="..\Servico\Servico.csproj">
       <Project>{80fbb0d1-7fc2-4654-a072-016ebd273167}</Project>

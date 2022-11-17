@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Persistencia.Contexts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,9 @@ using System.Net;
 using Modelo.Cadastros;
 using Servico.Cadastros;
 using Servico.Tabelas;
+using System.IO;
 
-namespace aula.Controllers
+namespace PSICAP2.Controllers
 {
     public class ProdutosController : Controller
     {
@@ -61,29 +63,14 @@ namespace aula.Controllers
                     {
                         produto.LogotipoMimeType = logotipo.ContentType;
                         produto.Logotipo = SetLogotipo(logotipo);
+                        produto.NomeArquivo = logotipo.FileName;
+                        produto.TamanhoArquivo = logotipo.ContentLength;
                     }
                     produtoServico.GravarProduto(produto);
-                    return RedirectToAction("Index");
-                }
-                PopularViewBag(produto);
-                return View(produto);
-            }
-            catch
-            {
-                PopularViewBag(produto);
-                return View(produto);
-            }
-        }
-
-        private ActionResult GravarProduto(Produto produto)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
                     produtoServico.GravarProduto(produto);
                     return RedirectToAction("Index");
                 }
+                PopularViewBag(produto);
                 return View(produto);
             }
             catch
@@ -92,18 +79,49 @@ namespace aula.Controllers
                 return View(produto);
             }
         }
+        private byte[] SetLogotipo(HttpPostedFileBase logotipo)
+        {
+            var bytesLogotipo = new byte[logotipo.ContentLength];
+            logotipo.InputStream.Read(bytesLogotipo, 0, logotipo.ContentLength);
+            return bytesLogotipo;
+        }
+        public FileContentResult GetLogotipo(long id)
+        {
+            Produto produto = produtoServico.ObterProdutoPorId(id);
+            if (produto != null)
+            {
+                return File(produto.Logotipo, produto.LogotipoMimeType);
+            }
+            return null;
+        }
+        public ActionResult DownloadArquivo(long id)
+        {
+            Produto produto = produtoServico.ObterProdutoPorId(id);
+            FileStream fileStream = new FileStream(Server.MapPath(
+            "~/App_Data/" + produto.NomeArquivo), FileMode.Create,
+            FileAccess.Write);
+            fileStream.Write(produto.Logotipo, 0,
+            Convert.ToInt32(produto.TamanhoArquivo));
+            fileStream.Close();
+            return File(fileStream.Name, produto.LogotipoMimeType, produto.NomeArquivo);
+        }
 
-        // private EFContext context = new EFContext(); // Acesso ao contexto (comentado)
+
+
         private ProdutoServico produtoServico = new ProdutoServico();
         private CategoriaServico categoriaServico = new CategoriaServico();
         private FabricanteServico fabricanteServico = new FabricanteServico();
+
         // GET: Produtos
         public ActionResult Index()
         {
-            //var produtos = context.Produtos.Include(c => c.Categoria). // Acesso ao contexto
-            // Include(f => f.Fabricante).OrderBy(n => n.Nome); // (comentado)
-            //return View(produtos);
             return View(produtoServico.ObterProdutosClassificadosPorNome());
+        }
+
+        // GET: Produtos/Details/5
+        public ActionResult Details(long? id)
+        {
+            return ObterVisaoProdutoPorId(id);
         }
 
         // GET: Produtos/Create
@@ -115,38 +133,24 @@ namespace aula.Controllers
 
         // POST: Produtos/Create
         [HttpPost]
-        public ActionResult Create(Produto produto)
+        public ActionResult Create(Produto produto, HttpPostedFileBase logotipo = null, string chkRemoverImagem = null)
         {
             PopularViewBag();
-            return GravarProduto(produto);
+            return GravarProduto(produto, logotipo, chkRemoverImagem);
         }
 
         // GET: Produtos/Edit/5
         public ActionResult Edit(long? id)
         {
+            PopularViewBag();
             return ObterVisaoProdutoPorId(id);
         }
 
         // POST: Produtos/Edit/5
+        [HttpPost]
         public ActionResult Edit(Produto produto, HttpPostedFileBase logotipo = null, string chkRemoverImagem = null)
         {
             return GravarProduto(produto, logotipo, chkRemoverImagem);
-        }
-
-        public FileContentResult GetLogotipo(long id)
-        {
-            Produto produto = produtoServico.ObterProdutoPorId(id);
-            if (produto != null)
-            {
-                return File(produto.Logotipo, produto.LogotipoMimeType);
-            }
-            return null;
-        }
-
-        // GET: Produtos/Details/5
-        public ActionResult Details(long? id)
-        {
-            return ObterVisaoProdutoPorId(id);
         }
 
         // GET: Produtos/Delete/5
@@ -170,13 +174,5 @@ namespace aula.Controllers
                 return View();
             }
         }
-
-        private byte[] SetLogotipo(HttpPostedFileBase logotipo)
-        {
-            var bytesLogotipo = new byte[logotipo.ContentLength];
-            logotipo.InputStream.Read(bytesLogotipo, 0, logotipo.ContentLength);
-            return bytesLogotipo;
-        }
-
     }
 }
