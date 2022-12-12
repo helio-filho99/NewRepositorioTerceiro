@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Modelo.Tabelas;
@@ -18,7 +18,7 @@ namespace Modelo.Cadastros
         [DataType(DataType.Date)]
         [DisplayName("Data de Cadastro")]
         [Required(ErrorMessage = "Informe a data de cadastro do produto")]
-        public DateTime? DataCadastro { get; set; }
+        public DateTime DataCadastro { get; set; }
         [DisplayName("Categoria")]
         public long? CategoriaId { get; set; }
         [DisplayName("Fabricante")]
@@ -29,5 +29,6 @@ namespace Modelo.Cadastros
         public byte[] Logotipo { get; set; }
         public string NomeArquivo { get; set; }
         public long TamanhoArquivo { get; set; }
+        public bool Destaque { get; set; }
     }
 }
