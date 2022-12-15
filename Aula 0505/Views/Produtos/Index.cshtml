@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Modelo.Cadastros.Produto>
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listagem de PRODUTOS";
@@ -26,6 +25,9 @@
                     </th>
                     <th>Categoria</th>
                     <th>Fabricante</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Destaque)
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +45,27 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Fabricante.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Destaque)
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                @if (item.NomeArquivo == null)
+                                {
+                                    <div class="form-control-static">
+                                        Nenhuma imagem adicionada
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="panel-body">
+                                        <img class="img-thumbnail"
+                                             src="@Url.Action("GetLogotipo", "Produtos", new { id = item.ProdutoId })"
+                                             style="display:block; margin-left:auto; margin-right:auto;" />
+                                    </div>
+                                }
+                            </div>
                         </td>
                         <td>
                             @Html.ActionLink("Alterar", "Edit", new { id = item.ProdutoId }) |
@@ -64,7 +87,7 @@
           rel="stylesheet">
 }
 @section ScriptPage {
-    <script src=" @Url.Content("~/scripts/DataTables/jquery.dataTables.js")"></script>
+    <script src=" @Url.Content("~/scripts/DataTables/jquery. dataTables.js")"></script>
     <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
